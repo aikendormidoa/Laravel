@@ -1,0 +1,118 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->call([
+            UserSeeder::class,
+            EventSeeder::class,
+            BookingSeeder::class,
+        ]);
+    }
+}
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('users')->insert([
+            [
+                'name' => 'Admin',
+                'email' => 'admin@bookify.com',
+                'password' => bcrypt('password'),
+            ],
+            [
+                'name' => 'John Doe',
+                'email' => 'john@example.com',
+                'password' => bcrypt('password'),
+            ],
+        ]);
+    }
+}
+
+// filepath: my-laravel-project/my-laravel-project/database/seeders/EventSeeder.php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class EventSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('events')->insert([
+            [
+                'name' => 'Birthday Party',
+                'description' => 'Celebrate your special day with a fantastic birthday party event.',
+            ],
+            [
+                'name' => 'Wedding',
+                'description' => 'Make your wedding memorable with beautiful arrangements and more.',
+            ],
+            [
+                'name' => 'Debut',
+                'description' => 'Celebrate the milestone of your debut with style and joy.',
+            ],
+        ]);
+    }
+}
+
+// filepath: my-laravel-project/my-laravel-project/database/seeders/BookingSeeder.php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class BookingSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('bookings')->insert([
+            [
+                'user_id' => 1,
+                'event_id' => 1,
+                'booker_name' => 'John Doe',
+                'booker_email' => 'john@example.com',
+                'payment_method' => 'PayPal',
+            ],
+            [
+                'user_id' => 1,
+                'event_id' => 2,
+                'booker_name' => 'Jane Doe',
+                'booker_email' => 'jane@example.com',
+                'payment_method' => 'GCash',
+            ],
+        ]);
+    }
+}
